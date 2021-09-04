@@ -2,7 +2,6 @@ package net.herbert.tutorialmod.blocks;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
-import net.minecraft.block.RedstoneBlock;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.BooleanProperty;
@@ -11,9 +10,11 @@ import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.Direction;
+import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
 
-public class MyBlock extends RedstoneBlock {
+public class MyBlock extends Block {
 
     public static final BooleanProperty REDSTONE = BooleanProperty.of("redstone");
 
@@ -33,12 +34,12 @@ public class MyBlock extends RedstoneBlock {
 
             if(world.getBlockState(pos).get(REDSTONE) == false) {
                 world.setBlockState(pos, state.with(REDSTONE, true));
-                player.sendMessage(new LiteralText("off"), false);
+                player.sendMessage(new LiteralText("Redstone On"), false);
             } else {
                 world.setBlockState(pos, state.with(REDSTONE, false));
-                player.sendMessage(new LiteralText("on"), false);
+                player.sendMessage(new LiteralText("Redstone Off"), false);
             }
-            player.sendMessage(new LiteralText(String.valueOf(REDSTONE)), false);
+            //player.sendMessage(new LiteralText(String.valueOf(REDSTONE)), false);
 
         }
 
@@ -51,5 +52,12 @@ public class MyBlock extends RedstoneBlock {
         return state.get(REDSTONE);
     }
 
-
+    @Override
+    public int getWeakRedstonePower(BlockState state, BlockView world, BlockPos pos, Direction direction) {
+        if(state.get(REDSTONE) == true) {
+            return 9;
+        } else {
+            return 0;
+        }
+    }
 }

@@ -1,3 +1,3 @@
 # fabricmod
 
-My attempt to lean Minecraft modding using Fabric
+My attempt to learn Minecraft modding using Fabric
