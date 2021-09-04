@@ -10,7 +10,7 @@ import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
 
 public class ModBlocks {
-     public static final Block RUBY_BLOCK = new Block(FabricBlockSettings
+     public static final MyBlock RUBY_BLOCK = new MyBlock(FabricBlockSettings
              .of(Material.METAL)
              .breakByTool(FabricToolTags.PICKAXES, 2)
              .requiresTool()
